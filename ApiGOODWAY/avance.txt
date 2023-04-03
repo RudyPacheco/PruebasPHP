@@ -1,0 +1,34 @@
+{
+    "codigoTienda":"1234567891234",
+    "codigoUsuario":"3216547894131",
+    "contrasena":"user123"
+}
+
+{
+    "codigoTienda":"123456789",
+    "codigoUsuario":"321654",
+    "contrasena":"password12"
+}
+
+
+{
+    "codigoTienda":"987654312",
+    "codigoUsuario":"987654",
+    "contrasena":"password321"
+}
+
+
+
+INSERT INTO tiendas (codigo,nombre) VALUES ('123456789', 'Los altos');
+INSERT INTO usuarios (codigo,contrasena) VALUES ('321654','password12');
+
+INSERT INTO usuarios (codigo,contrasena) VALUES ('987654','password321');
+
+INSERT INTO facturas (numero_factura,codigo_tienda,fecha_emision,codigo_usuario,total) VALUES ('01','123456789','2022-05-18','321654',500);
+INSERT INTO facturas (numero_factura,codigo_tienda,fecha_emision,codigo_usuario,total) VALUES ('02','123456789','2022-05-18','321654',600);
+INSERT INTO facturas (numero_factura,codigo_tienda,fecha_emision,codigo_usuario,total) VALUES ('03','987654321','2022-08-18','987654',40000);
+
+INSERT INTO facturas (numero_factura,codigo_tienda,fecha_emision,codigo_usuario,total) VALUES ('04','987654321','2022-08-18','987654',30000);
+
+
+SELECT numero_factura,codigo_tienda,fecha_emision,codigo_usuario,total FROM facturas WHERE codigo_tienda = 123456789 AND codigo_usuario = 321654 AND fecha_emision BETWEEN '2022-01-01' AND '2022-12-31'

@@ -1,0 +1,17 @@
+{
+    "cui":"123456789",
+    "codigoUsuario":"654321",
+    "contrasena":"password123"
+}
+
+INSERT INTO cliente (cui,nombre,codigo,contrasena) VALUES ('123456789','Juan Pedro Lopez','654321','password123');
+
+
+
+INSERT INTO cuenta_monetaria (no_cuenta,cui,monto) VALUES (11111,'123456789',6000);
+
+
+INSERT INTO cuenta_ahorro (no_cuenta,cui,monto) VALUES (22222,'123456789',3000);
+
+
+INSERT INTO tarjeta_credito (no_tarjeta,cui,monto) VALUES ('321265498712','123456789',2000);

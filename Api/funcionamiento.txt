@@ -1,0 +1,19 @@
+Funcionaminto de la API:
+todas las peticiones se realizan al archivo peticion.php 
+para poder registrar un niño se realiza atravez de un JSON con la informacion necesitada enviado atravez de una peticion POST  
+Ejemplo:
+{
+    "cui":"1234567891234",
+    "nombre":"Josue",
+    "apellido":"Morales",
+    "fechaNacimiento":"2021-01-02",
+    "sexo":"m",
+    "peso":"18.5",
+    "talla":"25"
+}
+
+para poder consultar sobre un niño mediante el CUI se realiza atravez de una peticion GET enviando el cui por la url 
+Ejemplo : 
+http://localhost/api/peticion.php?=CUI=1234567891234
+
+para poder consultar la lista de niñas y conocer su nutricional simplemente se debe realizar una peticion GET al archivo "peticion.php"

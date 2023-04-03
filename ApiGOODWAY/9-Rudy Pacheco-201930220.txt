@@ -1,0 +1,100 @@
+Datos Personales:
+#9
+Rudy Adolfo Pacheco Pacheco
+201930220
+
+Enlace : 
+
+https://www.tinkercad.com/things/fKe4mK9WuaM-practica-numero-1/editel?sharecode=AloId19WL4NnaSKEv51ckWLpAGu9E_wSkWLTuRx65N4
+
+
+Codigo de la practica:
+// C++ code
+//
+//declaracion de variables para led's del semaforo
+const int ledRojo = 5;
+const int ledAmarillo = 4;
+const int ledVerde = 3;
+//declaracion del pulsador y estado del boton
+int pulsador = 2;
+int estado =LOW;
+
+//declaracion de iterador para los coleres
+int colorEncendido = ledAmarillo;
+int colorAnterior = ledVerde;
+
+//funcion de inicializacion
+void setup(){
+    estadoInicial();
+}
+
+void loop() {
+  	//cuando presionen el boton cambie de estado y apague los leds
+    if(digitalRead(pulsador) == HIGH){
+        estado = !estado;
+      	ledsApagados();
+        delay(1000);
+    }
+  //verifica si el estado esta activo para ejectur el loop de cambio de color
+   if(estado){
+        cambioTurnoColor();
+     	delay(500);
+    }
+    
+    
+  	
+    
+}
+
+//funcion que cambia el turno al color que le corresponde en el semaforo
+void cambioTurnoColor(){
+    switch(colorEncendido) {
+    case ledRojo:
+        digitalWrite(ledAmarillo, HIGH);
+        digitalWrite(ledRojo, LOW);
+        colorEncendido = ledAmarillo;
+      	colorAnterior = ledRojo;
+    break;
+    case ledAmarillo: 
+        if(ledRojo==colorAnterior){ //verifica si el turno es de rojo o verde
+            digitalWrite(ledVerde, HIGH);
+            digitalWrite(ledAmarillo, LOW);
+            colorEncendido = ledVerde;
+        }else{
+            digitalWrite(ledRojo, HIGH);
+            digitalWrite(ledAmarillo, LOW);
+            colorEncendido = ledRojo;
+        }
+      colorAnterior = ledAmarillo;
+    break;
+    case ledVerde: 
+        digitalWrite(ledAmarillo, HIGH);
+        digitalWrite(ledVerde, LOW);
+        colorEncendido = ledAmarillo;
+      	colorAnterior = ledVerde;
+    break;   
+    default: //Bloque de instrucciones por defecto;
+        digitalWrite(pulsador, LOW);
+      	ledsApagados();
+    }
+  
+}
+
+//funcion que determina los estados iniciales
+void estadoInicial(){
+    //Definiendo pines como Entrada
+    pinMode(pulsador, INPUT);
+  
+    //Definiendo pines como Salida
+    pinMode(ledRojo, OUTPUT); 
+    pinMode(ledAmarillo, OUTPUT); 
+    pinMode(ledVerde, OUTPUT); 
+	ledsApagados();
+
+}
+//funcion que apaga todos los leds
+void ledsApagados(){
+  	digitalWrite(ledRojo, LOW);
+    digitalWrite(ledAmarillo, LOW);
+  	digitalWrite(ledVerde, LOW);
+}
